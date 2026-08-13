@@ -1,0 +1,30 @@
+.floating-badge {
+  display: inline-block;
+  padding: 0;
+  border-radius: 8px;
+  background-color: var(--accent-dark);
+  font-family: 'Inter', sans-serif;
+  font-weight: 600;
+  box-shadow: 0 10px 15px -3px rgba(0,0,0,0.1);
+  transition: transform 0.3s ease;
+}
+
+.floating-badge:hover {
+  transform: scale(1.05) !important;
+  z-index: 10;
+}
+
+.badge-inner {
+  display: block;
+  padding: 8px 16px;
+  border-radius: 8px;
+  border: 2px solid #111;
+  transform: translateY(-4px);
+  color: white;
+  font-size: 14px;
+}
+
+.badge-blue .badge-inner { background-color: var(--accent-blue); }
+.badge-green .badge-inner { background-color: var(--accent-green); }
+.badge-yellow .badge-inner { background-color: var(--accent-yellow); color: #111; }
+.badge-red .badge-inner { background-color: var(--accent-red); }

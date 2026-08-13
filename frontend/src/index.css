@@ -1,0 +1,94 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&family=Press+Start+2P&display=swap');
+
+:root {
+  --bg-color: #f7f9fc;
+  --grid-color: #e2e8f0;
+  --text-primary: #1e293b;
+  --text-secondary: #475569;
+  
+  --accent-blue: #3b82f6;
+  --accent-blue-shadow: #1d4ed8;
+  
+  --accent-green: #22c55e;
+  --accent-green-shadow: #15803d;
+  
+  --accent-yellow: #eab308;
+  --accent-yellow-shadow: #a16207;
+  
+  --accent-red: #ef4444;
+  --accent-red-shadow: #b91c1c;
+
+  --accent-dark: #1e293b;
+  --accent-dark-shadow: #0f172a;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Inter', sans-serif;
+  background-color: var(--bg-color);
+  color: var(--text-primary);
+  /* The diagonal grid pattern */
+  background-image: 
+    linear-gradient(45deg, var(--grid-color) 1px, transparent 1px), 
+    linear-gradient(-45deg, var(--grid-color) 1px, transparent 1px);
+  background-size: 40px 40px;
+  background-position: 0 0, 20px 0;
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+.pixel-font {
+  font-family: 'Press Start 2P', cursive;
+}
+
+/* Animations */
+@keyframes float {
+  0% { transform: translateY(0px) rotate(0deg); }
+  50% { transform: translateY(-10px) rotate(1deg); }
+  100% { transform: translateY(0px) rotate(0deg); }
+}
+
+@keyframes pop {
+  0% { transform: scale(0.95); }
+  50% { transform: scale(1.05); }
+  100% { transform: scale(1); }
+}
+
+.float-anim {
+  animation: float 6s ease-in-out infinite;
+}
+
+.glass-panel {
+  background: rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.07);
+  border-radius: 16px;
+}
+
+@keyframes wobble {
+  0% { transform: rotate(0deg) scale(1); }
+  25% { transform: rotate(-5deg) scale(1.05); }
+  50% { transform: rotate(0deg) scale(1); }
+  75% { transform: rotate(5deg) scale(1.05); }
+  100% { transform: rotate(0deg) scale(1); }
+}
+
+.wobble-anim {
+  animation: wobble 1s ease-in-out infinite;
+}
+
+@keyframes modalPop {
+  0% { transform: scale(0.95); opacity: 0; }
+  100% { transform: scale(1); opacity: 1; }
+}
+
+.modal-pop {
+  animation: modalPop 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+}

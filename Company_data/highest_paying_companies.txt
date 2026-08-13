@@ -1,0 +1,101 @@
+Companies in India with highest pay
+
+Linkedin
+Microsoft
+Google
+Atlassian
+Adobe
+Salesforce
+Intuit
+Apple
+Twitter
+Indeed
+Expedia
+Nvidia
+VMWare
+Flipkart
+Inmobi
+Nutanix
+Citrix
+JP Morgan
+Uber
+Tower Research
+Amazon
+Goldman Sachs
+Morgan Stanley
+Codenation
+Zomato
+DE Shaw
+Sprinklr
+Arcesium
+Harness
+Coinbase
+Rippling
+Rubrik
+Udaan
+Sumologic
+Cure Fit
+Swiggy
+Ola
+Directi
+ServiceNow
+Stripe
+Sharechat
+Postman
+Oracle (OCI)
+Compass
+HealthifyMe
+Aviso
+Target
+Palo Alto Networks
+Compass
+Vizury
+Qubole
+Practo
+Whatfix
+World Quant
+Alphonso
+App Dynamics
+Cohesity
+MotorQ
+Hasura
+Quadeye
+Bloomreach
+Instabase
+AirBnB
+Cisco
+Samsung
+Walmart
+Slack
+Blackbuck
+Oracle (other than OCI)
+Visa
+Intel
+Qualcomm
+ARM
+Broadcom
+Texas Instruments
+Mentor Graphics
+Cred
+Upgrad
+Paypal
+Dunzo
+Unacademy
+BigBasket
+Cloudera
+Twilio
+Box8
+MyGate
+Jio
+MakeMyTrip
+BrowserStack
+Razorpay
+Juniper Networks
+SanDisk
+Redhat
+Chowbotics (DoorDash)
+Hotstar
+Paytm
+Wissen
+Oyo
+Dream11
