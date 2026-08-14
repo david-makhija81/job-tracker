@@ -136,7 +136,7 @@ const Dashboard = () => {
         </Card>
 
         <Card title="By Job Title">
-          <div style={{ height: '350px', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+          <div style={{ height: '450px', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
             {titleChartData.length > 0 ? (
               <ResponsiveContainer width="100%" height="100%">
                 <PieChart style={{ fontFamily: '"Press Start 2P", cursive', fontSize: '10px' }}>
