@@ -73,6 +73,20 @@ const Dashboard = () => {
     );
   };
 
+  const VerticalCustomLegend = (props) => {
+    const { payload } = props;
+    return (
+      <div style={{ display: 'flex', flexDirection: 'column', gap: '16px', paddingLeft: '20px', fontSize: '10px', fontFamily: '"Press Start 2P", cursive' }}>
+        {payload.map((entry, index) => (
+          <div key={`item-${index}`} style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+            <div style={{ width: '12px', height: '12px', backgroundColor: entry.color, borderRadius: '2px', flexShrink: 0 }}></div>
+            <span style={{ color: entry.color, whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }} title={entry.value}>{entry.value}</span>
+          </div>
+        ))}
+      </div>
+    );
+  };
+
   return (
     <div style={{ padding: '40px', maxWidth: '1400px', margin: '0 auto' }}>
 
@@ -143,13 +157,13 @@ const Dashboard = () => {
             {titleChartData.length > 0 ? (
               <ResponsiveContainer width="100%" height="100%">
                 <PieChart style={{ fontFamily: '"Press Start 2P", cursive', fontSize: '10px' }}>
-                  <Pie data={titleChartData} cx="50%" cy="50%" outerRadius={130} innerRadius={60} fill="#8884d8" dataKey="value">
+                  <Pie data={titleChartData} cx="30%" cy="50%" outerRadius={130} innerRadius={60} fill="#8884d8" dataKey="value">
                     {titleChartData.map((entry, index) => (
                       <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
                     ))}
                   </Pie>
                   <Tooltip contentStyle={{ borderRadius: '8px', border: 'none', boxShadow: '0 4px 12px rgba(0,0,0,0.1)', fontFamily: '"Press Start 2P", cursive', fontSize: '10px' }} />
-                  <Legend content={<CustomLegend />} />
+                  <Legend layout="vertical" verticalAlign="middle" align="right" wrapperStyle={{ right: '5%' }} content={<VerticalCustomLegend />} />
                 </PieChart>
               </ResponsiveContainer>
             ) : (
