@@ -1,6 +1,6 @@
 import React from 'react';
 
-const Card = ({ children, className = '', title }) => {
+const Card = ({ children, className = '', title, style = {} }) => {
   return (
     <div className={`glass-panel p-6 ${className}`} style={{
       background: 'rgba(255, 255, 255, 0.9)',
@@ -9,7 +9,8 @@ const Card = ({ children, className = '', title }) => {
       border: '4px solid #111',
       boxShadow: '8px 8px 0px rgba(0, 0, 0, 1)',
       borderRadius: '16px',
-      padding: '24px'
+      padding: '24px',
+      ...style
     }}>
       {title && <h3 style={{
         fontFamily: "'Press Start 2P', cursive",

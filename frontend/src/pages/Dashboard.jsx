@@ -93,9 +93,10 @@ const Dashboard = () => {
         </div>
       </div>
 
-      {/* Stats Section */}
-      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(350px, 1fr))', gap: '24px', marginTop: '40px' }}>
+      {/* Stats Section - 2x2 Grid */}
+      <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '24px', marginTop: '40px' }}>
 
+        {/* Top Left: Quick Stats */}
         <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '16px' }}>
           <Card style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', textAlign: 'center', padding: '30px' }}>
             <div className="pixel-font" style={{ fontSize: '10px', color: 'var(--text-primary)', marginBottom: '16px', lineHeight: '1.6' }}>TOTAL</div>
@@ -115,6 +116,7 @@ const Dashboard = () => {
           </Card>
         </div>
 
+        {/* Top Right: By Location */}
         <Card title="By Location">
           <div style={{ height: '350px', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
             {locationChartData.length > 0 ? (
@@ -135,12 +137,13 @@ const Dashboard = () => {
           </div>
         </Card>
 
-        <Card title="By Job Title">
+        {/* Bottom Row: By Job Title - spans both columns */}
+        <Card title="By Job Title" style={{ gridColumn: '1 / -1' }}>
           <div style={{ height: '450px', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
             {titleChartData.length > 0 ? (
               <ResponsiveContainer width="100%" height="100%">
                 <PieChart style={{ fontFamily: '"Press Start 2P", cursive', fontSize: '10px' }}>
-                  <Pie data={titleChartData} cx="50%" cy="50%" outerRadius={110} innerRadius={50} fill="#8884d8" dataKey="value">
+                  <Pie data={titleChartData} cx="50%" cy="50%" outerRadius={130} innerRadius={60} fill="#8884d8" dataKey="value">
                     {titleChartData.map((entry, index) => (
                       <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
                     ))}
