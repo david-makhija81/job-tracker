@@ -8,6 +8,8 @@ const JobModal = ({ job, onClose, onUpdate }) => {
   const [updating, setUpdating] = useState(false);
   const [editingCategory, setEditingCategory] = useState(false);
   const [categoryValue, setCategoryValue] = useState(job?.jobCategory || '');
+  const [postingIdValue, setPostingIdValue] = useState(job?.jobPostingId || '');
+  const [editingPostingId, setEditingPostingId] = useState(false);
 
   const handleStatusChange = async (newStatus) => {
     let updates = { status: newStatus };
@@ -114,9 +116,70 @@ const JobModal = ({ job, onClose, onUpdate }) => {
           }}>
             <h1 className="pixel-font" style={{ fontSize: '2.5rem', marginBottom: '8px', fontWeight: '800' }}>{job.company}</h1>
             <h2 className="pixel-font" style={{ fontSize: '1.2rem', opacity: 0.9 }}>{job.jobTitle}</h2>
-            <div style={{ display: 'flex', gap: '16px', marginTop: '8px', opacity: 0.8, fontSize: '0.9rem' }}>
+            <div style={{ display: 'flex', gap: '16px', marginTop: '8px', opacity: 0.8, fontSize: '0.9rem', alignItems: 'center', flexWrap: 'wrap' }}>
               {job.jobCategory && <span>📁 {job.jobCategory}</span>}
-              {job.jobPostingId && <span>🏷️ {job.jobPostingId}</span>}
+              {postingIdValue ? (
+                <span>🏷️ {postingIdValue}</span>
+              ) : !editingPostingId ? (
+                <span
+                  onClick={() => setEditingPostingId(true)}
+                  style={{ cursor: 'pointer', opacity: 0.6, textDecoration: 'underline dotted' }}
+                  title="Click to add Job Posting ID"
+                >🏷️ Add Job ID</span>
+              ) : (
+                <span style={{ display: 'inline-flex', gap: '6px', alignItems: 'center' }}>
+                  <input
+                    autoFocus
+                    type="text"
+                    placeholder="e.g. REQ-12345"
+                    value={postingIdValue}
+                    onChange={(e) => setPostingIdValue(e.target.value)}
+                    onKeyDown={async (e) => {
+                      if (e.key === 'Enter' && postingIdValue.trim()) {
+                        setUpdating(true);
+                        try {
+                          await updateJob(job.id, { jobPostingId: postingIdValue.trim() });
+                          setEditingPostingId(false);
+                          if (onUpdate) onUpdate();
+                        } catch { alert('Failed to save.'); }
+                        finally { setUpdating(false); }
+                      }
+                      if (e.key === 'Escape') setEditingPostingId(false);
+                    }}
+                    style={{
+                      padding: '4px 8px',
+                      borderRadius: '6px',
+                      border: '1px solid rgba(255,255,255,0.5)',
+                      background: 'rgba(255,255,255,0.2)',
+                      color: 'white',
+                      fontSize: '0.85rem',
+                      outline: 'none',
+                      width: '130px',
+                    }}
+                  />
+                  <button
+                    type="button"
+                    disabled={updating || !postingIdValue.trim()}
+                    onClick={async () => {
+                      setUpdating(true);
+                      try {
+                        await updateJob(job.id, { jobPostingId: postingIdValue.trim() });
+                        setEditingPostingId(false);
+                        if (onUpdate) onUpdate();
+                      } catch { alert('Failed to save.'); }
+                      finally { setUpdating(false); }
+                    }}
+                    style={{ background: 'none', border: 'none', color: 'white', cursor: 'pointer', fontSize: '1rem' }}
+                    title="Save"
+                  >✓</button>
+                  <button
+                    type="button"
+                    onClick={() => { setPostingIdValue(''); setEditingPostingId(false); }}
+                    style={{ background: 'none', border: 'none', color: 'white', cursor: 'pointer', fontSize: '1rem', opacity: 0.7 }}
+                    title="Cancel"
+                  >✕</button>
+                </span>
+              )}
             </div>
             {job.staleFlag && (
               <Badge color="red" style={{ position: 'absolute', top: '32px', right: '32px', transform: 'rotate(10deg)' }}>⚠️ STALE</Badge>
