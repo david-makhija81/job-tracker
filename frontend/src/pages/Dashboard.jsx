@@ -40,6 +40,7 @@ const Dashboard = () => {
       return 'DevOps/Systems';
     }
     if (t.includes('ai') || t.includes('machine learning')) return 'AI/ML Engineer';
+    if (t.includes('solution')) return 'Solutions Engineer';
     return title;
   };
 
