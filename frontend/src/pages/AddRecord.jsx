@@ -15,6 +15,7 @@ const AddRecord = () => {
     company: '',
     jobTitle: '',
     jobCategory: '',
+    jobPostingId: '',
     recruitingHrManager: '',
     status: 'Yet to Apply',
     applyLink: '',
@@ -114,6 +115,7 @@ const AddRecord = () => {
               <Input label="Company" name="company" value={formData.company} onChange={handleChange} required />
               <Input label="Job Title" name="jobTitle" value={formData.jobTitle} onChange={handleChange} required />
               <ComboSelect label="Job Category" name="jobCategory" value={formData.jobCategory} onChange={handleChange} required />
+              <Input label="Job Posting ID" name="jobPostingId" value={formData.jobPostingId} onChange={handleChange} placeholder="e.g. REQ-12345" />
               <Input label="Recruiting HR/Manager" name="recruitingHrManager" value={formData.recruitingHrManager} onChange={handleChange} required />
             </Card>
           </div>

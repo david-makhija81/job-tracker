@@ -12,6 +12,7 @@ model Job {
   company             String
   jobTitle            String
   jobCategory         String?
+  jobPostingId        String?
   recruitingHrManager String
   status              String   @default("Yet to Apply")
   applyLink           String?

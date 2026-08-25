@@ -75,6 +75,7 @@ const JobTable = () => {
               <thead>
                 <tr style={{ borderBottom: '2px solid #ccc', backgroundColor: 'rgba(255,255,255,0.5)' }}>
                   <th style={{ padding: '16px' }}>Company</th>
+                  <th style={{ padding: '16px' }}>Job ID</th>
                   <th style={{ padding: '16px' }}>Job Title</th>
                   <th style={{ padding: '16px' }}>Category</th>
                   <th style={{ padding: '16px' }}>Status/Outcome</th>
@@ -98,6 +99,7 @@ const JobTable = () => {
                     onMouseLeave={(e) => e.currentTarget.style.backgroundColor = job.staleFlag ? 'rgba(239, 68, 68, 0.1)' : 'transparent'}
                   >
                     <td style={{ padding: '16px', fontWeight: 'bold' }}>{job.company}</td>
+                    <td style={{ padding: '16px', fontSize: '0.85rem', fontFamily: '"Press Start 2P", cursive', color: 'var(--text-secondary)' }}>{job.jobPostingId || '—'}</td>
                     <td style={{ padding: '16px' }}>{job.jobTitle}</td>
                     <td style={{ padding: '16px', fontSize: '0.85rem', color: 'var(--text-secondary)' }}>{job.jobCategory || '—'}</td>
                     <td style={{ padding: '16px' }}>

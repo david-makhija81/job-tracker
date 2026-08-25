@@ -114,9 +114,10 @@ const JobModal = ({ job, onClose, onUpdate }) => {
           }}>
             <h1 className="pixel-font" style={{ fontSize: '2.5rem', marginBottom: '8px', fontWeight: '800' }}>{job.company}</h1>
             <h2 className="pixel-font" style={{ fontSize: '1.2rem', opacity: 0.9 }}>{job.jobTitle}</h2>
-            {job.jobCategory && (
-              <div style={{ marginTop: '8px', opacity: 0.8, fontSize: '0.9rem' }}>📁 {job.jobCategory}</div>
-            )}
+            <div style={{ display: 'flex', gap: '16px', marginTop: '8px', opacity: 0.8, fontSize: '0.9rem' }}>
+              {job.jobCategory && <span>📁 {job.jobCategory}</span>}
+              {job.jobPostingId && <span>🏷️ {job.jobPostingId}</span>}
+            </div>
             {job.staleFlag && (
               <Badge color="red" style={{ position: 'absolute', top: '32px', right: '32px', transform: 'rotate(10deg)' }}>⚠️ STALE</Badge>
             )}
