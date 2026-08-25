@@ -52,10 +52,10 @@ const Dashboard = () => {
   }, {});
   const locationChartData = Object.keys(locationData).map(key => ({ name: key, value: locationData[key] }));
 
-  // Process data for Job Title Pie Chart
+  // Process data for Job Category Pie Chart
   const titleData = jobs.reduce((acc, job) => {
-    const title = normalizeTitle(job.jobTitle);
-    acc[title] = (acc[title] || 0) + 1;
+    const category = job.jobCategory || normalizeTitle(job.jobTitle);
+    acc[category] = (acc[category] || 0) + 1;
     return acc;
   }, {});
   const titleChartData = Object.keys(titleData).map(key => ({ name: key, value: titleData[key] }));
@@ -152,8 +152,8 @@ const Dashboard = () => {
           </div>
         </Card>
 
-        {/* Bottom Row: By Job Title - spans both columns */}
-        <Card title="By Job Title" style={{ gridColumn: '1 / -1' }}>
+        {/* Bottom Row: By Job Category - spans both columns */}
+        <Card title="By Job Category" style={{ gridColumn: '1 / -1' }}>
           <div style={{ height: '450px', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
             {titleChartData.length > 0 ? (
               <ResponsiveContainer width="100%" height="100%">

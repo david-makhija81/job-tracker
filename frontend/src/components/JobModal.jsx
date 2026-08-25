@@ -1,10 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import Badge from './Badge';
 import Button from './Button';
+import ComboSelect from './ComboSelect';
 import { updateJob } from '../api';
 
 const JobModal = ({ job, onClose, onUpdate }) => {
   const [updating, setUpdating] = useState(false);
+  const [editingCategory, setEditingCategory] = useState(false);
+  const [categoryValue, setCategoryValue] = useState(job?.jobCategory || '');
 
   const handleStatusChange = async (newStatus) => {
     let updates = { status: newStatus };
@@ -111,6 +114,9 @@ const JobModal = ({ job, onClose, onUpdate }) => {
           }}>
             <h1 className="pixel-font" style={{ fontSize: '2.5rem', marginBottom: '8px', fontWeight: '800' }}>{job.company}</h1>
             <h2 className="pixel-font" style={{ fontSize: '1.2rem', opacity: 0.9 }}>{job.jobTitle}</h2>
+            {job.jobCategory && (
+              <div style={{ marginTop: '8px', opacity: 0.8, fontSize: '0.9rem' }}>📁 {job.jobCategory}</div>
+            )}
             {job.staleFlag && (
               <Badge color="red" style={{ position: 'absolute', top: '32px', right: '32px', transform: 'rotate(10deg)' }}>⚠️ STALE</Badge>
             )}
@@ -165,6 +171,80 @@ const JobModal = ({ job, onClose, onUpdate }) => {
             <h3 className="pixel-font" style={{ fontSize: '0.8rem', color: 'var(--text-secondary)', marginBottom: '16px' }}>THE OPPORTUNITY</h3>
 
             <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '16px' }}>
+              <div style={{ gridColumn: '1 / -1' }}>
+                <div style={{ fontSize: '0.8rem', color: 'var(--text-secondary)', marginBottom: '4px' }}>Job Category</div>
+                {!editingCategory ? (
+                  <div
+                    onClick={() => setEditingCategory(true)}
+                    style={{ fontWeight: 'bold', fontSize: '1.1rem', cursor: 'pointer', display: 'flex', alignItems: 'center', gap: '8px' }}
+                    title="Click to edit"
+                  >
+                    {categoryValue || 'Uncategorized'}
+                    <span style={{ fontSize: '0.8rem', opacity: 0.5 }}>✏️</span>
+                  </div>
+                ) : (
+                  <div style={{ display: 'flex', gap: '8px', alignItems: 'flex-end' }}>
+                    <div style={{ flex: 1 }}>
+                      <ComboSelect
+                        name="jobCategory"
+                        value={categoryValue}
+                        onChange={(e) => setCategoryValue(e.target.value)}
+                      />
+                    </div>
+                    <button
+                      type="button"
+                      disabled={updating}
+                      onClick={async () => {
+                        setUpdating(true);
+                        try {
+                          await updateJob(job.id, { jobCategory: categoryValue });
+                          setEditingCategory(false);
+                          if (onUpdate) onUpdate();
+                        } catch {
+                          alert('Failed to update category.');
+                        } finally {
+                          setUpdating(false);
+                        }
+                      }}
+                      style={{
+                        background: 'var(--accent-green)',
+                        color: 'white',
+                        border: 'none',
+                        borderRadius: '8px',
+                        padding: '10px 16px',
+                        cursor: 'pointer',
+                        fontFamily: '"Press Start 2P", cursive',
+                        fontSize: '10px',
+                        marginBottom: '16px',
+                        boxShadow: '2px 2px 0px var(--accent-green-shadow)',
+                      }}
+                    >
+                      SAVE
+                    </button>
+                    <button
+                      type="button"
+                      onClick={() => {
+                        setCategoryValue(job.jobCategory || '');
+                        setEditingCategory(false);
+                      }}
+                      style={{
+                        background: 'var(--accent-red)',
+                        color: 'white',
+                        border: 'none',
+                        borderRadius: '8px',
+                        padding: '10px 16px',
+                        cursor: 'pointer',
+                        fontFamily: '"Press Start 2P", cursive',
+                        fontSize: '10px',
+                        marginBottom: '16px',
+                        boxShadow: '2px 2px 0px var(--accent-red-shadow)',
+                      }}
+                    >
+                      ✕
+                    </button>
+                  </div>
+                )}
+              </div>
               <div>
                 <div style={{ fontSize: '0.8rem', color: 'var(--text-secondary)' }}>Location</div>
                 <div style={{ fontWeight: 'bold', fontSize: '1.1rem' }}>{job.location || 'Unknown'}</div>

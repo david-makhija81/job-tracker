@@ -11,6 +11,7 @@ model Job {
   id                  Int      @id @default(autoincrement())
   company             String
   jobTitle            String
+  jobCategory         String?
   recruitingHrManager String
   status              String   @default("Yet to Apply")
   applyLink           String?

@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { createJob } from '../api';
 import Card from '../components/Card';
 import { Input, Select } from '../components/Input';
+import ComboSelect from '../components/ComboSelect';
 import Button from '../components/Button';
 import Badge from '../components/Badge';
 
@@ -13,6 +14,7 @@ const AddRecord = () => {
   const [formData, setFormData] = useState({
     company: '',
     jobTitle: '',
+    jobCategory: '',
     recruitingHrManager: '',
     status: 'Yet to Apply',
     applyLink: '',
@@ -111,6 +113,7 @@ const AddRecord = () => {
             <Card title="Core Information">
               <Input label="Company" name="company" value={formData.company} onChange={handleChange} required />
               <Input label="Job Title" name="jobTitle" value={formData.jobTitle} onChange={handleChange} required />
+              <ComboSelect label="Job Category" name="jobCategory" value={formData.jobCategory} onChange={handleChange} required />
               <Input label="Recruiting HR/Manager" name="recruitingHrManager" value={formData.recruitingHrManager} onChange={handleChange} required />
             </Card>
           </div>
